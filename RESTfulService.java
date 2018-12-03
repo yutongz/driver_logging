@@ -43,7 +43,7 @@ public class DriverLoggerService {
    @Path("/driver/{id:\\d+}/") 
    @GET 
    @Produces("application/json") 
-   public Driver readPerson(@PathParam("id") int id) { 
+   public Driver getPerson(@PathParam("id") int id) { 
        Driver dr = myDB.getDriver(id);
        
        return dr
@@ -52,7 +52,7 @@ public class DriverLoggerService {
    @Path("/trip/{id:\\d+}/") 
    @GET 
    @Produces("application/json") 
-   public Trip readPerson(@PathParam("id") int id) { 
+   public Trip getTrip(@PathParam("id") int id) { 
        Trip tp = myDB.getTrip(id);
        
        return tp
@@ -61,7 +61,7 @@ public class DriverLoggerService {
    @Path("/trips/{beginDate:\\d{4}-\\d{2}-\\d{2}},{endDate:\\d{4}-\\d{2}-\\d{2}}/") 
    @GET 
    @Produces("application/json") 
-   public Account[] readAccountsByDateBetween(
+   public Account[] getTripsByDateBetween(
       @PathParam("beginDate") String beginDate,
       @PathParam("endDate") String endDate) throws ParseException { 
        Trip[] tps = myDB.findTrips(String beginDate, String endDate);
