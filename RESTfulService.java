@@ -43,7 +43,7 @@ public class DriverLoggerService {
    @Path("/driver/{id:\\d+}/") 
    @GET 
    @Produces("application/json") 
-   public Driver getPerson(@PathParam("id") int id) { 
+   public Driver getDriver(@PathParam("id") int id) { 
        Driver dr = myDB.getDriver(id);
        
        return dr
