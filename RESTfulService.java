@@ -22,7 +22,8 @@ public class DriverLoggerService {
    @Path("/updatetrip/{trip:\\d+}/") 
    @POST 
    @Consumes("application/json") 
-   public Response updateTrip(Trip trip) { 
+   public Response updateTrip(Trip trip
+                             @PathParam("trip") int tripID) { 
         if (trip.ID NOT exists in database) {
             return NOT exists
          } else {
