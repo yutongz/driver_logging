@@ -7,24 +7,35 @@ public class DriverLoggerService {
 
    MyDBClient myDB = new MyDBClient();
     
-   @Path("/driver/id:\\d+}/") 
-   @POST 
-   @Consumes("application/json") 
-   public Response createPerson(Person person) { 
-       ...... 
-   } 
- 
-   @Path("/person/") 
+   @Path("/createtrip/") 
    @PUT 
    @Consumes("application/json") 
-   public Response updatePerson(Person person) { 
-       ...... 
+   public Response createTrip(Trip trip) { 
+         if (trip.ID exists in database) {
+            return exists
+         } else {
+            put this trip into database  
+         }
+         return succeeded
    } 
  
-   @Path("/person/{id:\\d+}/") 
+   @Path("/updatetrip/{trip:\\d+}/") 
+   @POST 
+   @Consumes("application/json") 
+   public Response updateTrip(Trip trip) { 
+        if (trip.ID NOT exists in database) {
+            return NOT exists
+         } else {
+            1. get this trip from database
+            2. update this trip
+            3. put it back to the database
+         }
+         return succeeded
+   } 
+ 
+   @Path("/driver/{id:\\d+}/") 
    @DELETE 
-   public Response deletePerson(@PathParam("id") 
-   int id) { 
+   public Response deleteDriver(@PathParam("id")  int id) { 
        ...... 
    } 
  
@@ -44,6 +55,16 @@ public class DriverLoggerService {
        Trip tp = myDB.getTrip(id);
        
        return tp
+   } 
+   
+   @Path("/trips/{beginDate:\\d{4}-\\d{2}-\\d{2}},{endDate:\\d{4}-\\d{2}-\\d{2}}/") 
+   @GET 
+   @Produces("application/json") 
+   public Account[] readAccountsByDateBetween(
+      @PathParam("beginDate") String beginDate,
+      @PathParam("endDate") String endDate) throws ParseException { 
+       Trip[] tps = myDB.findTrips(String beginDate, String endDate);
+       return tps;
    } 
 
 }
